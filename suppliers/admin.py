@@ -5,6 +5,9 @@ from suppliers.models import NetworkMember, Product
 
 @admin.register(NetworkMember)
 class NetworkMemberAdmin(admin.ModelAdmin):
+    """
+    Интерфейс администратора для модели NetworkMember.
+    """
     list_display = ('id', 'name', 'city', 'supplier')
     list_filter = ('city',)
 
@@ -17,5 +20,8 @@ class NetworkMemberAdmin(admin.ModelAdmin):
 
 
 @admin.register(Product)
-class NetworkMemberAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
+    """
+    Интерфейс администратора для модели Product.
+    """
     list_display = ('id', 'name')

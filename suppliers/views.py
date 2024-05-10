@@ -8,6 +8,9 @@ from .serializers import NetworkMemberSerializer
 
 
 class NetworkMemberViewSet(viewsets.ModelViewSet):
+    """
+    Конечная точка API, позволяющая просматривать и редактировать пользователей сети.
+    """
     queryset = NetworkMember.objects.all()
     serializer_class = NetworkMemberSerializer
     permission_classes = [IsActiveEmployee]
@@ -16,6 +19,9 @@ class NetworkMemberViewSet(viewsets.ModelViewSet):
 
 
 class NetworkMemberByLevelViewSet(viewsets.ModelViewSet):
+    """
+    Конечная точка API, позволяющая получить пользователей сети по иерархии.
+    """
     serializer_class = NetworkMemberSerializer
 
     def get_queryset(self):

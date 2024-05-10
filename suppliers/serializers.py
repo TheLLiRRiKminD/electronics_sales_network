@@ -3,12 +3,19 @@ from .models import NetworkMember, Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для модели Product.
+    """
+
     class Meta:
         model = Product
         fields = '__all__'
 
 
 class NetworkMemberSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для модели NetworkMember.
+    """
     products = ProductSerializer(many=True, read_only=True)
 
     class Meta:

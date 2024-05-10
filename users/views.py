@@ -7,10 +7,16 @@ from .models import User
 
 
 class UserViewSet(ModelViewSet):
+    """
+    Конечная точка API, позволяющая просматривать и редактировать пользователей.
+    """
     serializer_class = UserSerializer
     queryset = User.objects.all().order_by('date_joined')
     permission_classes = [IsAuthenticated, ]
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
+    """
+    Конечная точка API, позволяющая получить токен регистрации.
+    """
     serializer_class = MyTokenObtainPairSerializer

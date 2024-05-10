@@ -4,16 +4,20 @@ NULLABLE = {'blank': True, 'null': True}
 
 
 class NetworkMember(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
-    country = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    street = models.CharField(max_length=255)
-    house_number = models.CharField(max_length=255)
-    supplier = models.ForeignKey('self', on_delete=models.SET_NULL, **NULLABLE)
-    debt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-    hierarchy_level = models.IntegerField(default=0)
+    """
+    Модель объекта NetworkMember
+    """
+    name = models.CharField(max_length=255, verbose_name='Имя')
+    email = models.EmailField(verbose_name='E-mail')
+    country = models.CharField(max_length=255, verbose_name='Страна')
+    city = models.CharField(max_length=255, verbose_name='Город')
+    street = models.CharField(max_length=255, verbose_name='Улица')
+    house_number = models.CharField(max_length=255, verbose_name='Номер дома')
+    supplier = models.ForeignKey('self', on_delete=models.SET_NULL, **NULLABLE, verbose_name='Поставщик')
+    debt = models.DecimalField(max_digits=10, decimal_places=2, default=0,
+                               verbose_name='Задолженность перед поставщиком')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    hierarchy_level = models.IntegerField(default=0, verbose_name='Уровень в иерархии')
 
     class Meta:
         verbose_name = "Участник сети"
@@ -29,10 +33,13 @@ class NetworkMember(models.Model):
 
 
 class Product(models.Model):
-    network_member = models.ForeignKey(NetworkMember, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    model = models.CharField(max_length=255)
-    release_date = models.DateField()
+    """
+    Модель объекта Product
+    """
+    network_member = models.ForeignKey(NetworkMember, on_delete=models.CASCADE, verbose_name='Реализатор продукции')
+    name = models.CharField(max_length=255, verbose_name='Имя')
+    model = models.CharField(max_length=255, verbose_name='Модель продукта')
+    release_date = models.DateField(verbose_name='Дата реализации продукта')
 
     class Meta:
         verbose_name = "Продукт"

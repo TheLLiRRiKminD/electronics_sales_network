@@ -7,6 +7,9 @@ load_dotenv()
 
 
 class Command(BaseCommand):
+    """
+    Команда для создания суперпользователя
+    """
     def handle(self, *args, **options):
         user = User.objects.create(
             email=os.getenv('SU_EMAIL_ADDRESS'),
